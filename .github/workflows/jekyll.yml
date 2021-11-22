@@ -53,9 +53,13 @@ jobs:
     -
       name: Set docker image name env
       run: echo ::set-env name=DOCKER_IMAGE_NAME::sookeke/quarkus-github-actions-demo
+      env:
+         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
     -
       name: Set docker image tag env
       run: echo ::set-env name=DOCKER_TAG_VERSION::$(echo $GITHUB_RUN_NUMBER)
+      env:
+         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
     - name: Setup Kustomize
       uses: imranismail/setup-kustomize@v1
