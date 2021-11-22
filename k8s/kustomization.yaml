@@ -6,5 +6,5 @@ resources:
 - ingress.yaml
 images:
 - name: quarkus-demo
-  newName: pzalejko/quarkus-github-actions-demo
+  newName: sookeke/quarkus-github-actions-demo
   newTag: "58"
