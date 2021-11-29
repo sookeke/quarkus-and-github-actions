@@ -7,4 +7,4 @@ resources:
 images:
 - name: quarkus-demo
   newName: sookeke/quarkus-github-actions-demo
-  newTag: "7"
+  newTag: "8"
