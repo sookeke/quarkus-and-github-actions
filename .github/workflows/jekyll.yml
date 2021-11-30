@@ -88,4 +88,5 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
+        repository: bcgov-c/ministry-gitops-jag
         github_token: ${{ secrets.GH_PAT }}
