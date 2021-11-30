@@ -46,10 +46,15 @@ jobs:
     name: updateK8s
     runs-on: ubuntu-latest
     needs: build
-
+    env:
+      manifest_directory: ./Quarkus-k8s/environment/dev
+    
     steps:
     - name: Check out code
       uses: actions/checkout@v2
+      with:
+        repository: bcgov-c/ministry-gitops-jag
+        token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
     -
       name: Set docker image name env
       run: echo ::set-env name=DOCKER_IMAGE_NAME::sookeke/quarkus-github-actions-demo
@@ -70,8 +75,9 @@ jobs:
       env:
         DOCKER_IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_TAG_VERSION }}
       run: |
-       cd k8s
+       # cd k8s
        kustomize edit set image quarkus-demo=$DOCKER_IMAGE_NAME
+      working-directory: ${{env.manifest_directory}}
 
     - name: Commit files
       run: |
