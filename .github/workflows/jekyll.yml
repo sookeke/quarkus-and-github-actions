@@ -76,7 +76,7 @@ jobs:
         DOCKER_IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_TAG_VERSION }}
       run: |
        # cd k8s
-       kustomize edit set image quarkus-demo=$DOCKER_IMAGE_NAME
+       kustomize edit set image quarkus-demo=$DOCKER_IMAGE_NAME && kustomize build .
       working-directory: ${{env.manifest_directory}}
 
     - name: Commit files
