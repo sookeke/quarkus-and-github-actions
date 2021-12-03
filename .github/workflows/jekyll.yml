@@ -76,7 +76,12 @@ jobs:
         DOCKER_IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_TAG_VERSION }}
       run: |
        # cd k8s
-       kustomize edit set image quarkus-demo=$DOCKER_IMAGE_NAME && kustomize build .
+       # kustomize edit set image quarkus-demo=$DOCKER_IMAGE_NAME && kustomize build .
+       #remove old kustomization file
+         rm -f kustomization.yaml
+         sed "s/IMAGE_TAG/${{ env.DOCKER_TAG_VERSION }}/g" kustomize.yaml.template > kustomization.yaml
+         cat kustomization.yaml
+       
       working-directory: ${{env.manifest_directory}}
 
     - name: Commit files
